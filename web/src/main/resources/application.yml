@@ -5,6 +5,7 @@ spring:
     username: root
     password: Zj20190901
 
+upload-path: C:/upload/
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml

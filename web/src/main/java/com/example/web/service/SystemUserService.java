@@ -14,4 +14,8 @@ public class SystemUserService {
     public User queryByPhone(String phone) {
         return userMapper.queryByPhone(phone);
     }
+
+    public Integer insertUser(User user){
+        return userMapper.insertUser(user);
+    }
 }

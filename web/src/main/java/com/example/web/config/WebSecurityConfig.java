@@ -2,11 +2,13 @@ package com.example.web.config;
 
 
 import com.example.web.service.UserService;
+import com.sun.corba.se.impl.protocol.AddressingDispositionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -37,7 +39,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     // 需要放行的URL
     public static final String[] AUTH_WHITELIST = {
-            "/login"
+            "/login",
+            "/test",
+            "/sendSms",
+            "/signIn"
             // other public endpoints of your API may be appended to this array
     };
 
@@ -50,19 +55,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //由于使用的是JWT，我们这里不需要csrf
                 .csrf().disable()
                 //基于token，所以不需要session
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
                 //可以匿名访问的链接
                 .antMatchers(AUTH_WHITELIST).permitAll()
                 //其他所有请求需要身份认证
                 .anyRequest().authenticated()
                 .and()
-                .addFilter(new JWTAuthenticationFilter(authenticationManager()));
+                .addFilter(new JWTAuthenticationFilter(authenticationManager()))
+                .sessionManagement().
+                sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .maximumSessions(1).maxSessionsPreventsLogin(true);
+        ;
     }
+
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         auth.userDetailsService(userService)
                 .passwordEncoder(passwordEncoder);
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        //解决静态资源被拦截的问题
+        web.ignoring().antMatchers("/upload/**");
     }
 }
 

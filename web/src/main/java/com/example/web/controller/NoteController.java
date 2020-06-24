@@ -15,14 +15,14 @@ public class NoteController {
     @Autowired
     private NoteService noteService;
 
-    @GetMapping("/test")
-    public String test(){
-        return "这是我给你的response body~\n这是你的authentication" +
-                SecurityContextHolder.getContext().getAuthentication().toString();
-    }
 
     @PostMapping("/POST/note")
     public Response postNote(@RequestBody() Note note){
+
+        Integer uid = (Integer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        note.setId(uid);
+
         noteService.insertNote(note);
 
         return Response.success(note);

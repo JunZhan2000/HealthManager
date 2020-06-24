@@ -2,6 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.web.mapper.UserMapper">
-
-
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
+        INSERT Into
+        Users(phone, password)
+        Values(#{phone}, #{password})
+    </insert>
 </mapper>

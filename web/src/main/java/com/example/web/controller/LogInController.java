@@ -33,7 +33,10 @@ public class LogInController {
         System.out.println(auth.toString());
         System.out.println(auth.getPrincipal());
 
-        Integer uid = (Integer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Integer uid = Integer.getInteger((String) auth.getPrincipal());
+
+//        Integer uid = (Integer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return "hello";
     }
 
@@ -78,9 +81,19 @@ public class LogInController {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         if(userService.insertUser(user) != null){
+            JSONObject json=new JSONObject();
             User insertedUser = userService.queryByPhone(user.getPhone());
             insertedUser.setPassword(null);
-            return Response.success(insertedUser);
+            //创建token
+            String token = JwtUtil.generateToken(insertedUser.getId().toString());
+            json.put("success", true);
+            json.put("code", 1);
+            //json.put("result", user1);
+            json.put("time", new Date().toString());
+            json.put("message", "登陆成功");
+            json.put("userInfo", insertedUser);
+            json.put(JwtUtil.AUTHORIZATION,token);
+            return Response.success(json.toString());
         } else {
             return Response.fail("创建用户失败");
         }

@@ -1,11 +1,11 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/health_manager?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
-    username: root
-    password: Zj20190901
+    url: jdbc:mysql://47.100.32.161:3306/health_manager?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
+    username: health_manager
+    password: hust_sse_2018
 
-upload-path: C:/upload/
+upload-path: /root/upload/
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml

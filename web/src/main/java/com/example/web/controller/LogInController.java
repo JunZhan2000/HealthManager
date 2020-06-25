@@ -30,13 +30,8 @@ public class LogInController {
     @GetMapping("/hello")
     public String hello(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println(auth.toString());
-        System.out.println(auth.getPrincipal());
-
-
         Integer uid = Integer.getInteger((String) auth.getPrincipal());
 
-//        Integer uid = (Integer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return "hello";
     }
 

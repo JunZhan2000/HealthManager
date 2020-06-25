@@ -4,7 +4,7 @@
 <mapper namespace="com.example.web.mapper.UserMapper">
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
         INSERT Into
-        Users(phone, password)
+        users(phone, password)
         Values(#{phone}, #{password})
     </insert>
 </mapper>

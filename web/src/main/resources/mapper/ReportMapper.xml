@@ -3,5 +3,10 @@
 
 <mapper namespace="com.example.web.mapper.ReportMapper">
 
+    <insert id="insertReport" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+        reports (uid, time)
+        VALUES (${uid}, #{time})
+    </insert>
 
 </mapper>

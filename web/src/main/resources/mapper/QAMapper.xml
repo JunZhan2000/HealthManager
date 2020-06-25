@@ -3,5 +3,38 @@
 
 <mapper namespace="com.example.web.mapper.QAMapper">
 
+    <insert id="insertQA" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO qa_records(
+            uid, q_department, q_title, q_text, answer
+        )
+        VALUES (
+                   ${uid}, #{q_department}, #{q_title}, #{q_text}, #{answer}
+               )
+    </insert>
 
+    <update id="updateQA" parameterType="com.example.web.entity.QARecord">
+        UPDATE qa_records SET
+            q_department=#{q_department}, q_title=#{q_title}, q_text=#{q_text}, answer=#{answer}
+        WHERE id=${id} AND uid=${uid}
+    </update>
+
+    <delete id="deleteQA" parameterType="java.lang.Integer">
+        DELETE FROM qa_records
+        WHERE id=${id}
+    </delete>
+
+    <delete id="deleteQAAll" parameterType="java.lang.Integer">
+        DELETE FROM qa_records
+        WHERE uid=${uid}
+    </delete>
+
+    <select id="getQARecordFromID" parameterType="java.lang.Integer" resultType="com.example.web.entity.QARecord">
+        SELECT * FROM qa_records
+        WHERE id=${id}
+    </select>
+
+    <select id="getQARecordFromUid" parameterType="java.lang.Integer" resultType="com.example.web.entity.QARecord">
+        SELECT * FROM qa_records
+        WHERE uid=${uid}
+    </select>
 </mapper>

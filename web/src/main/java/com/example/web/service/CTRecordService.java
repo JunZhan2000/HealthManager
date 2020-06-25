@@ -77,11 +77,4 @@ public class CTRecordService {
         List<CTJudgeRecord> list = ctRecordMapper.getCTRecordFromUid(uid);
         return list;
     }
-
-
-
-
-
-
-
 }

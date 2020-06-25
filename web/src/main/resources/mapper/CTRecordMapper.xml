@@ -15,7 +15,7 @@
     <update id="updateCTRecord" parameterType="com.example.web.entity.CTJudgeRecord">
         UPDATE judge_records SET
             picture_url=#{picture_url}, answer=${answer}
-        WHERE id=${id}
+        WHERE id=${id} AND uid=${uid}
     </update>
 
     <delete id="deleteCTRecord" parameterType="java.lang.Integer">

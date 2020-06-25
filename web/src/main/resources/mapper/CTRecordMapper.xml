@@ -3,5 +3,35 @@
 
 <mapper namespace="com.example.web.mapper.CTRecordMapper">
 
+    <insert id="insertCTRecord" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO judge_records(
+            uid, picture_url, answer, type_id
+        )
+        VALUES (
+                   ${uid}, #{picture_url}, ${answer}, ${type_id}
+               )
+    </insert>
+
+    <update id="updateCTRecord" parameterType="com.example.web.entity.CTJudgeRecord">
+        UPDATE judge_records SET
+            picture_url=#{picture_url}, answer=${answer}
+        WHERE id=${id} AND uid=${uid}
+    </update>
+
+    <delete id="deleteCTRecord" parameterType="java.lang.Integer">
+        DELETE FROM judge_records
+        WHERE id=${id}
+    </delete>
+
+    <select id="getCTRecordFromID" parameterType="java.lang.Integer" resultType="com.example.web.entity.CTJudgeRecord">
+        SELECT * FROM judge_records
+        WHERE id=${id}
+    </select>
+
+    <select id="getCTRecordFromUid" parameterType="java.lang.Integer" resultType="com.example.web.entity.CTJudgeRecord">
+        SELECT * FROM judge_records
+        WHERE uid=${uid}
+    </select>
+
 
 </mapper>

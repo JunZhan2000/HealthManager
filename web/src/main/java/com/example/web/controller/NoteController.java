@@ -16,15 +16,4 @@ public class NoteController {
     private NoteService noteService;
 
 
-    @PostMapping("/POST/note")
-    public Response postNote(@RequestBody() Note note){
-
-        Integer uid = (Integer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        note.setId(uid);
-
-        noteService.insertNote(note);
-
-        return Response.success(note);
-    }
 }

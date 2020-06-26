@@ -10,9 +10,5 @@ public class NoteService {
     @Autowired
     private NoteMapper noteMapper;
 
-    public Note insertNote(Note note){
-        noteMapper.insertNote(note);
 
-        return note;
-    }
 }

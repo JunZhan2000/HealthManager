@@ -3,6 +3,7 @@ package com.example.web.controller;
 import com.example.web.config.JWTAuthenticationFilter;
 import com.example.web.entity.Picture;
 import com.example.web.entity.Report;
+import com.example.web.service.PictureService;
 import com.example.web.service.ReportService;
 import com.example.web.utils.FileUtil;
 import com.example.web.utils.Response;
@@ -19,16 +20,16 @@ import org.springframework.web.multipart.MultipartFile;
 public class ReportController {
     @Autowired
     private ReportService reportService;
+    @Autowired
+    private PictureService pictureService;
 
     @PostMapping("/POST/report")
-    public Response postReport(@RequestParam("file") MultipartFile pictures,
-                               @RequestBody Report report){
+    public Response postReport(@RequestBody Report report){
+
         report.setUid(JWTAuthenticationFilter.getUID());
-        if(reportService.insertReport(report) == null){
+        if(reportService.insertReport(report) == 0){
             return Response.fail("error");
         }
-//        String filePath = FileUtil.uploadImg(pictures);  //下载文件保存到本地
-//        Picture picture = new Picture(report.getId(), filePath);
 
         return Response.success(report);
     }

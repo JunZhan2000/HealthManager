@@ -1,13 +1,14 @@
 package com.example.web.entity;
 
 import lombok.Data;
-import java.util.Date;
+
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
 public class Report {
     Integer id;
     Integer uid;
-    Date time;
+    LocalDate time;
     List<String> pictures;
 }

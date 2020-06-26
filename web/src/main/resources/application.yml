@@ -1,3 +1,7 @@
+upload-path: C:/upload/
+#upload-path: /root/upload/
+
+
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -5,7 +9,11 @@ spring:
     username: health_manager
     password: hust_sse_2018
 
-upload-path: /root/upload/
+  servlet:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 10MB
+
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml

@@ -3,13 +3,6 @@
 
 <mapper namespace="com.example.web.mapper.NoteMapper">
 
-    <insert id="insertNote" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO notes(
-            uid, text
-        )
-        VALUES (
-            ${uid}, #{text}
-        )
-    </insert>
+
 
 </mapper>

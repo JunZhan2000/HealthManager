@@ -63,9 +63,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
                 .sessionManagement().
-                sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .maximumSessions(1).maxSessionsPreventsLogin(true);
-        ;
+                sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//                .maximumSessions(1).maxSessionsPreventsLogin(true);
     }
 
     public void configure(AuthenticationManagerBuilder auth) throws Exception {

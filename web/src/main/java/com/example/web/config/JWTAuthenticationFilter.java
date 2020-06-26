@@ -99,6 +99,7 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
             logger.error("非法参数异常: {} " + e);
         }catch (Exception e){
             //json.put("status", "-9");
+            System.out.println(e.getMessage());
             json.put("codeCheck", false);
             json.put("msg", "Invalid Token");
             response.setCharacterEncoding("UTF-8");
@@ -145,8 +146,9 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
 
     public static Integer getUID(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Integer uid = Integer.parseInt((String) auth.getPrincipal());
 
-        return Integer.getInteger((String) auth.getPrincipal());
+        return uid;
     }
 }
 

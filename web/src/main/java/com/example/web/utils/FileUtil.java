@@ -1,12 +1,18 @@
 package com.example.web.utils;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 
+@Component
 public class FileUtil {
-    @Value("${upload-path}")
     private static String uploadPath;
+
+    @Value("${upload-path}")
+    public void setUploadPath(String uploadPath) {
+        FileUtil.uploadPath = uploadPath;
+    }
 
     /**
      * 静态方法，下载文件到本地

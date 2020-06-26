@@ -9,4 +9,15 @@
         VALUES (${uid}, #{time})
     </insert>
 
+    <select id="queryByUID" resultType="com.example.web.entity.Report">
+        SELECT *
+        FROM reports
+        WHERE uid = ${uid}
+    </select>
+
+    <delete id="deleteByID">
+        DELETE FROM reports
+        WHERE id = ${id}
+    </delete>
+
 </mapper>

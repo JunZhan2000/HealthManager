@@ -12,4 +12,15 @@
         )
     </insert>
 
+    <select id="queryByReportID" resultType="java.lang.String">
+        SELECT url
+        FROM pictures
+        WHERE report_id = ${reportID}
+    </select>
+
+    <delete id="deleteByReportID">
+        DELETE FROM pictures
+        WHERE report_id = ${report_id}
+    </delete>
+
 </mapper>

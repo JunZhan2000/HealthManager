@@ -14,6 +14,9 @@ spring:
       max-request-size: 10MB
       max-file-size: 10MB
 
+pagehelper:
+  helper-dialect: mysql
+  support-methods-arguments: true
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml

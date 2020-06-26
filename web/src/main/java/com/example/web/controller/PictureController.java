@@ -41,6 +41,5 @@ public class PictureController {
             pictureRecords.add(pictureRecord);
         }
         return Response.success(pictureRecords);
-
     }
 }

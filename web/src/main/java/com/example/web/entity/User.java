@@ -5,6 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,8 @@ public class User implements UserDetails {
     private String password;  //密码
     private String name;  //名字
     private String avatar_url;  //头像
+    private Integer gender;     //性别
+    private LocalDate birthday; //生日
 
 
     @Override

@@ -26,8 +26,7 @@ public class CancerJudgeController {
         cancerJudgeRecord.setUid(uid);
         cancerJudgeRecord.setType_id(2);
         Integer count = cjRecordService.insertCJRecord(cancerJudgeRecord);
-        if(count == 0)
-        {
+        if(count == 0) {
             return Response.fail(cancerJudgeRecord);
         }
         return Response.success(cancerJudgeRecord);

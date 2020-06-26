@@ -18,6 +18,11 @@ public class QAController {
     @PostMapping("/POST/QARecord")
     public Response insertQA(@RequestBody() QARecord qaRecord)
     {
+        //
+        //调用py程序获取结果
+        //插入记录
+        //返回
+
         Integer uid = Integer.parseInt((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         qaRecord.setUid(uid);
         Integer count = qaService.insertQARecord(qaRecord);

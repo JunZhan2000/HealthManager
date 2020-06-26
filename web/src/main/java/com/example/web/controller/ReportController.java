@@ -34,6 +34,7 @@ public class ReportController {
     public Response getReports(@RequestParam(name = "pageNum", required = false, defaultValue = "0") Integer pageNum,
                                @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize){
         Integer uid = JWTAuthenticationFilter.getUID();
+
         PageHelper.startPage(pageNum, pageSize);
         List<Report> reports = reportService.queryByUID(uid); //查询记录
 

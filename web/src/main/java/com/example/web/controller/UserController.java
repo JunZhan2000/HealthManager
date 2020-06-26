@@ -1,14 +1,10 @@
 package com.example.web.controller;
 
 import com.example.web.config.JWTAuthenticationFilter;
-import com.example.web.entity.Picture;
 import com.example.web.entity.SMSParameter;
 import com.example.web.entity.User;
 import com.example.web.service.SystemUserService;
-import com.example.web.utils.FileUtil;
-import com.example.web.utils.JwtUtil;
-import com.example.web.utils.Response;
-import com.example.web.utils.VerifyCode;
+import com.example.web.utils.*;
 import com.github.qcloudsms.SmsSingleSender;
 import com.github.qcloudsms.SmsSingleSenderResult;
 import com.github.qcloudsms.httpclient.HTTPException;
@@ -17,7 +13,6 @@ import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,11 +28,15 @@ public class UserController {
     private SMSParameter smsParameter = new SMSParameter();
 
     @GetMapping("/hello")
-    public String hello(){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Integer uid = Integer.getInteger((String) auth.getPrincipal());
+    public Response hello(@RequestParam("picture_location") String picture_location){
 
-        return "hello";
+        String url = HttpUtil.generateGetUrl("http://localhost:8000/AI_API/CT_judge",
+                "picture_location", picture_location);
+        System.out.println(url);
+        String answer = HttpUtil.get(url);
+        System.out.println(answer);
+
+        return Response.success(answer);
     }
 
 

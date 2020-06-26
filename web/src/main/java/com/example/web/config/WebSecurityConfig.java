@@ -42,7 +42,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/login",
             "/test",
             "/sendSms",
-            "/signIn"
+            "/signIn",
+            "/hello"
             // other public endpoints of your API may be appended to this array
     };
 

@@ -1,5 +1,10 @@
 package com.example.web.entity;
 
+import lombok.Data;
+
+import java.sql.Timestamp;
+
+@Data
 public class CancerJudgeRecord {
     //记录id
     private Integer id;
@@ -11,44 +16,7 @@ public class CancerJudgeRecord {
     private Integer answer;
     //诊断类型：肺炎：1、癌症：2
     private Integer type_id = 2;
+    //时间
+    private Timestamp time;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getUid() {
-        return uid;
-    }
-
-    public void setUid(Integer uid) {
-        this.uid = uid;
-    }
-
-    public String getPicture_url() {
-        return picture_url;
-    }
-
-    public void setPicture_url(String picture_url) {
-        this.picture_url = picture_url;
-    }
-
-    public Integer getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(Integer answer) {
-        this.answer = answer;
-    }
-
-    public Integer getType_id() {
-        return type_id;
-    }
-
-    public void setType_id(Integer type_id) {
-        this.type_id = type_id;
-    }
 }

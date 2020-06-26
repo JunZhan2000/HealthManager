@@ -5,10 +5,10 @@
 
     <insert id="insertCJRecord" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO judge_records(
-            uid, picture_url, answer, type_id
+            uid, picture_url, answer, type_id, time
         )
         VALUES (
-                   ${uid}, #{picture_url}, ${answer}, ${type_id}
+                   ${uid}, #{picture_url}, ${answer}, ${type_id}, #{time}
                )
     </insert>
 

@@ -2,6 +2,9 @@ package com.example.web.entity;
 
 import lombok.Data;
 
+import java.sql.Timestamp;
+
+
 @Data
 public class CTJudgeRecord {
     //记录id
@@ -14,4 +17,6 @@ public class CTJudgeRecord {
     private Integer answer;
     //诊断类型：肺炎：1、癌症：2
     private Integer type_id = 1;
+    //时间
+    private Timestamp time;
 }

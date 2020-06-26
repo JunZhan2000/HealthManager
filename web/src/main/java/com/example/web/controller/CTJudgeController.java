@@ -1,12 +1,25 @@
 package com.example.web.controller;
 
+import com.example.web.config.JWTAuthenticationFilter;
 import com.example.web.entity.CTJudgeRecord;
+import com.example.web.entity.Picture;
+import com.example.web.entity.Report;
 import com.example.web.service.CTRecordService;
+import com.example.web.utils.FileUtil;
 import com.example.web.utils.Response;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -14,17 +27,37 @@ public class CTJudgeController {
     @Autowired
     private CTRecordService ctRecordService;
 
-    /**
-     * description 新建记录
-     * @param ctJudgeRecord
-     * @return
-     */
+
     @PostMapping("/POST/CTRecord")
-    public Response postRecord(@RequestBody() CTJudgeRecord ctJudgeRecord)
+    public Response postRecord(@RequestParam(value = "picture") MultipartFile picture)
     {
-        Integer uid = Integer.parseInt((String)SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        // 将图片文件转成BufferedImage格式
+        BufferedImage image = null;
+        try {
+            FileInputStream in = (FileInputStream)picture.getInputStream();
+            image = ImageIO.read(in);
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //将文件保存到本地
+        String filePath = FileUtil.uploadImg(picture);  //下载文件保存到本地
+        /**
+         * Ai接口
+         */
+        Integer answer = 0;
+        /**
+         * AI接口
+         */
+        //构造CTRecord类
+        CTJudgeRecord ctJudgeRecord = new CTJudgeRecord();
+        Integer uid = JWTAuthenticationFilter.getUID();
         ctJudgeRecord.setUid(uid);
         ctJudgeRecord.setType_id(1);
+        ctJudgeRecord.setPicture_url(filePath);
+        ctJudgeRecord.setAnswer(answer);
+        ctJudgeRecord.setTime(new Timestamp(System.currentTimeMillis()));
+        //插入数据库
         Integer count = ctRecordService.insertCTRecord(ctJudgeRecord);
         if(count == 0)
         {
@@ -84,6 +117,17 @@ public class CTJudgeController {
             return Response.fail(null);
         else
             return Response.success(ctJudgeRecord);
+    }
+
+    @GetMapping("/GET/CTRecord")
+    public Response getCTRecord(@RequestParam(name = "pageNum", required = false, defaultValue = "0") Integer pageNum,
+                                @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize)
+    {
+        Integer uid = JWTAuthenticationFilter.getUID();
+        PageHelper.startPage(pageNum, pageSize);
+        List<CTJudgeRecord> list = ctRecordService.getCTRecordFromUid(uid); //查询记录
+
+        return Response.success(list);
     }
 
     @GetMapping("/GET/CTRecord/uid")

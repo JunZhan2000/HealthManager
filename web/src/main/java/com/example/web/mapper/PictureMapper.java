@@ -14,4 +14,7 @@ public interface PictureMapper {
 
     //根据报告ID删除图片
     Integer deleteByReportID(Integer reportID);
+
+    //根据用户id删除图片
+    Integer deleteByUID(Integer uid);
 }

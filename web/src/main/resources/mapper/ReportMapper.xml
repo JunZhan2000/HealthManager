@@ -20,4 +20,10 @@
         WHERE id = ${id}
     </delete>
 
+    <delete id="deleteByUID">
+        DELETE
+        FROM reports AS r
+        WHERE uid = ${uid}
+    </delete>
+
 </mapper>

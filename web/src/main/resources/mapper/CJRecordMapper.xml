@@ -26,11 +26,13 @@
     <select id="getCJRecordFromID" parameterType="java.lang.Integer" resultType="com.example.web.entity.CancerJudgeRecord">
         SELECT * FROM judge_records
         WHERE id=${id}
+        AND type_id = 2
     </select>
 
     <select id="getCJRecordFromUid" parameterType="java.lang.Integer" resultType="com.example.web.entity.CancerJudgeRecord">
         SELECT * FROM judge_records
         WHERE uid=${uid}
+        AND type_id = 2
     </select>
 
 

@@ -14,4 +14,7 @@ public interface ReportMapper {
 
     //根据id删除体检记录
     Integer deleteByID(Integer id);
+
+    //根据uid删除体检记录
+    Integer deleteByUID(Integer uid);
 }

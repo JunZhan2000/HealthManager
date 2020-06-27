@@ -27,4 +27,9 @@ public class PictureService {
     public Integer deleteByReportID(Integer reportID){
         return pictureMapper.deleteByReportID(reportID);
     }
+
+    //根据用户id删除图片
+    public Integer deleteByUID(Integer uid){
+        return pictureMapper.deleteByUID(uid);
+    }
 }

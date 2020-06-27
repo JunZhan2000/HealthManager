@@ -23,4 +23,12 @@
         WHERE report_id = ${report_id}
     </delete>
 
+    <delete id="deleteByUID">
+        DELETE
+        FROM pictures AS p,
+        reports AS r
+        WHERE r.uid = ${uid}
+        AND p.report_id = r.id
+    </delete>
+
 </mapper>

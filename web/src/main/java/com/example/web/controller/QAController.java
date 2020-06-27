@@ -27,7 +27,7 @@ public class QAController {
         String text = qaRecord.getQ_text();
         //调用py程序获取结果
 
-        String answer = "jqwfevwntrvrtre";
+        String answer = "暂时的默认结果";
         //插入记录
         qaRecord.setAnswer(answer);
         Integer uid = Integer.parseInt((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal());

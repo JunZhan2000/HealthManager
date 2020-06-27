@@ -54,4 +54,15 @@ public class ReportController {
             return Response.fail("删除失败");
         }
     }
+
+    //删除一个用户所有的体检记录
+    @DeleteMapping("/DELETE/reports")
+    public Response deleteReports(){
+        Integer uid = JWTAuthenticationFilter.getUID();
+        if(reportService.deleteByUID(uid) != 0){
+            return Response.success("删除成功");
+        } else {
+            return Response.fail("删除失败");
+        }
+    }
 }

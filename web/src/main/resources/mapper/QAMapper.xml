@@ -5,10 +5,10 @@
 
     <insert id="insertQA" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO qa_records(
-            uid, q_department, q_title, q_text, answer
+            uid, q_department, q_title, q_text, answer, time
         )
         VALUES (
-                   ${uid}, #{q_department}, #{q_title}, #{q_text}, #{answer}
+                   ${uid}, #{q_department}, #{q_title}, #{q_text}, #{answer}, #{time}
                )
     </insert>
 

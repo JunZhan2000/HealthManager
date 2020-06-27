@@ -11,8 +11,6 @@ import java.util.List;
 public class ReportService {
     @Autowired
     private ReportMapper reportMapper;
-    @Autowired
-    private PictureService pictureService;
 
     //插入体检记录
     public Integer insertReport(Report report){
@@ -27,11 +25,14 @@ public class ReportService {
     //根据id删除体检记录
     public Integer deleteByID(Integer reportID){
         //删除记录，为未找到或者未删除，返回0
-        if(reportMapper.deleteByID(reportID) == 0){
+        return reportMapper.deleteByID(reportID);
+    }
+
+    //根据uid删除体检记录
+    public Integer deleteByUID(Integer uid){
+        if(reportMapper.deleteByUID(uid) == 0){
             return 0;
         }
-        //删除记录对应的图片
-        pictureService.deleteByReportID(reportID);
         return 1;
     }
 }

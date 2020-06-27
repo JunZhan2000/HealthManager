@@ -1,5 +1,4 @@
-upload-path: C:/upload/
-#upload-path: /root/upload/
+upload-path: /root/upload/
 
 
 spring:

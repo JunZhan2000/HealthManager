@@ -9,6 +9,7 @@ import com.example.web.utils.FileUtil;
 import com.example.web.utils.JwtUtil;
 import com.example.web.utils.Response;
 import com.example.web.utils.VerifyCode;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.github.qcloudsms.SmsSingleSender;
 import com.github.qcloudsms.SmsSingleSenderResult;
 import com.github.qcloudsms.httpclient.HTTPException;
@@ -23,6 +24,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 public class UserController {
@@ -76,23 +79,26 @@ public class UserController {
 
     @PostMapping("signIn")
     public Response signIn(@RequestBody() User user){
+        if (userService.queryByPhone(user.getPhone()) != null){
+            return Response.fail("该号码已注册");
+        }
         //先将密码加密再存到数据库中
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        if(userService.insertUser(user) != null){
-            JSONObject json=new JSONObject();
+        if(userService.insertUser(user) != 0){
+            Map<String, Object> map = new HashMap<>();
+
             User insertedUser = userService.queryByPhone(user.getPhone());
             insertedUser.setPassword(null);
+
             //创建token
             String token = JwtUtil.generateToken(insertedUser.getId().toString());
-            json.put("success", true);
-            json.put("code", 1);
-            //json.put("result", user1);
-            json.put("time", new Date().toString());
-            json.put("message", "登陆成功");
-            json.put("userInfo", insertedUser);
-            json.put(JwtUtil.AUTHORIZATION,token);
-            return Response.success(json.toString());
+            map.put("code", 1);
+            map.put("time", new Date().toString());
+            map.put("message", "登陆成功");
+            map.put("userInfo", insertedUser);
+            map.put(JwtUtil.AUTHORIZATION,token);
+            return Response.success(map);
         } else {
             return Response.fail("创建用户失败");
         }
@@ -125,25 +131,30 @@ public class UserController {
                     json.put("time", new Date().toString());
                     json.put("message", "登陆成功");
                     json.put(JwtUtil.AUTHORIZATION,token);
-                    return Response.success(json.toString());
+                    //插入用户信息
+                    User insertedUser = userService.queryByPhone(user.getPhone());
+                    insertedUser.setPassword(null);
+                    json.put("userInfo", insertedUser);
+
+                    return Response.success(json);
                 } else {
                     json.put("success", false);
                     json.put("code", -1);
                     json.put("message", "登陆失败,密码错误");
-                    return Response.fail(json.toString());
+                    return Response.fail(json);
                 }
             }else {
                 json.put("success", false);
                 json.put("code", 0);
                 json.put("message", "无此用户信息");
-                return Response.fail(json.toString());
+                return Response.fail(json);
             }
         } catch (Exception e) {
             json.put("code", -2);
             json.put("success", false);
             json.put("message", e.getMessage());
 
-            return Response.fail(json.toString());
+            return Response.fail(json);
         }
     }
 

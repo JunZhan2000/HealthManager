@@ -24,8 +24,8 @@
         <if test="password != password">
             password = #{password},
         </if>
-        <if test="birthday != null">
-            birthday = #{birthday, jdbcType=DATE},
+        <if test="age != null">
+            age = ${age},
         </if>
         id = #{id}
         where id = #{id}

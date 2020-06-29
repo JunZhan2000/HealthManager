@@ -56,7 +56,7 @@ public class CancerJudgeController {
         CancerJudgeRecord cancerJudgeRecord = new CancerJudgeRecord();
         Integer uid = JWTAuthenticationFilter.getUID();
         cancerJudgeRecord.setUid(uid);
-        cancerJudgeRecord.setType_id(1);
+        cancerJudgeRecord.setType_id(2);
         cancerJudgeRecord.setPicture_url(filePath);
         cancerJudgeRecord.setAnswer(answer);
         cancerJudgeRecord.setTime(new Timestamp(System.currentTimeMillis()));

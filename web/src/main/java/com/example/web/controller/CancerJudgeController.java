@@ -5,6 +5,7 @@ import com.example.web.entity.CTJudgeRecord;
 import com.example.web.entity.CancerJudgeRecord;
 import com.example.web.service.CJRecordService;
 import com.example.web.utils.FileUtil;
+import com.example.web.utils.HttpUtil;
 import com.example.web.utils.Response;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,13 +46,17 @@ public class CancerJudgeController {
         }
         //将文件保存到本地
         String filePath = FileUtil.uploadImg(picture);  //下载文件保存到本地
-        /**
-         * Ai接口
-         */
-        Integer answer = 0;
-        /**
-         * AI接口
-         */
+        String parameterName = "picture_location";
+        String parameterValue = "C:" + filePath;
+
+        String url = HttpUtil.generateGetUrl("http://localhost:8000/AI_API/cancer_judge",
+                parameterName, parameterValue);
+        System.out.println(url);
+//        Integer answer = Integer.parseInt(HttpUtil.get(url));
+        System.out.println(HttpUtil.get(url));
+        Integer answer = 1;
+
+
         //构造CTRecord类
         CancerJudgeRecord cancerJudgeRecord = new CancerJudgeRecord();
         Integer uid = JWTAuthenticationFilter.getUID();

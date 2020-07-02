@@ -6,6 +6,7 @@ import com.example.web.entity.Picture;
 import com.example.web.entity.Report;
 import com.example.web.service.CTRecordService;
 import com.example.web.utils.FileUtil;
+import com.example.web.utils.HttpUtil;
 import com.example.web.utils.Response;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,13 +43,15 @@ public class CTJudgeController {
         }
         //将文件保存到本地
         String filePath = FileUtil.uploadImg(picture);  //下载文件保存到本地
-        /**
-         * Ai接口
-         */
-        Integer answer = 0;
-        /**
-         * AI接口
-         */
+        String parameterName = "picture_location";
+        String parameterValue = "C:" + filePath;
+
+        String url = HttpUtil.generateGetUrl("http://localhost:8000/AI_API/CT_judge",
+                parameterName, parameterValue);
+//        Integer answer = Integer.parseInt(HttpUtil.get(url));
+        System.out.println(HttpUtil.get(url));
+        Integer answer = 1;
+
         //构造CTRecord类
         CTJudgeRecord ctJudgeRecord = new CTJudgeRecord();
         Integer uid = JWTAuthenticationFilter.getUID();

@@ -4,6 +4,7 @@ import com.example.web.config.JWTAuthenticationFilter;
 import com.example.web.entity.CTJudgeRecord;
 import com.example.web.entity.QARecord;
 import com.example.web.service.QAService;
+import com.example.web.utils.HttpUtil;
 import com.example.web.utils.Response;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,20 @@ public class QAController {
         String department = qaRecord.getQ_department();
         String title = qaRecord.getQ_title();
         String text = qaRecord.getQ_text();
-        //调用py程序获取结果
+        //调用模型获取诊断结果
+        String[] parametersName = new String[3];
+        String[] parametersValue = new String[3];
+        parametersName[0] = "department";
+        parametersName[1] = "title";
+        parametersName[2] = "text";
+        parametersValue[0] = department;
+        parametersValue[1] = title;
+        parametersValue[2] = text;
 
-        String answer = "暂时的默认结果";
+        String url = HttpUtil.generateGetUrl("http://localhost:8000/AI_API/medical_QA",
+                parametersName, parametersValue);
+        String answer = HttpUtil.get(url);
+
         //插入记录
         qaRecord.setAnswer(answer);
         Integer uid = Integer.parseInt((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal());

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ChangeInfoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="个人信息"
+            android:textColor="#000"
+            android:textSize="18dp"
+            android:layout_gravity="center"/>
+        <TextView
+            android:id="@+id/back"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textColor="#3F51B5"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="返回"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/info_change_icon"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:layout_marginLeft="40dp"
+            android:textSize="20dp"
+            android:text="头像"/>
+        <ImageView
+            android:id="@+id/jiantou1"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/jiantou"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_margin="10dp"/>
+        <ImageView
+            android:id="@+id/icon"
+            android:src="@drawable/icon5"
+            android:layout_width="wrap_content"
+            android:layout_toLeftOf="@id/jiantou1"
+            android:layout_height="80dp" />
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:id="@+id/change_name"
+        android:layout_height="70dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:layout_marginLeft="40dp"
+            android:textSize="20dp"
+            android:text="用户名"/>
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="User"
+            android:layout_toLeftOf="@id/jiantou2"
+            android:textSize="20dp"
+            android:gravity="center"/>
+        <ImageView
+            android:id="@+id/jiantou2"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/jiantou"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"/>
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/change_age"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:layout_marginLeft="40dp"
+            android:textSize="20dp"
+            android:text="年龄"/>
+        <TextView
+            android:id="@+id/age"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="50"
+            android:layout_toLeftOf="@id/jiantou3"
+            android:textSize="20dp"
+            android:gravity="center"/>
+        <ImageView
+            android:id="@+id/jiantou3"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/jiantou"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"/>
+
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/change_gender"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:layout_marginLeft="40dp"
+            android:textSize="20dp"
+            android:text="性别"/>
+        <TextView
+            android:id="@+id/gender"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="女"
+            android:layout_toLeftOf="@id/jiantou4"
+            android:textSize="20dp"
+            android:gravity="center"/>
+        <ImageView
+            android:id="@+id/jiantou4"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/jiantou"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"/>
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/change_password"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:background="@android:color/white"
+        android:layout_height="70dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:layout_marginLeft="40dp"
+            android:textSize="20dp"
+            android:text="密码"/>
+        <ImageView
+            android:id="@+id/jiantou5"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/jiantou"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"/>
+
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

@@ -48,9 +48,8 @@ public class CTJudgeController {
 
         String url = HttpUtil.generateGetUrl("http://localhost:8000/AI_API/CT_judge",
                 parameterName, parameterValue);
-//        Integer answer = Integer.parseInt(HttpUtil.get(url));
-        System.out.println(HttpUtil.get(url));
-        Integer answer = 1;
+        Integer answer = Integer.parseInt(HttpUtil.get(url));
+//        Integer answer = 1;
 
         //构造CTRecord类
         CTJudgeRecord ctJudgeRecord = new CTJudgeRecord();

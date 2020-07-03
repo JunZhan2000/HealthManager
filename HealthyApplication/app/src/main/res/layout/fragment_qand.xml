@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".QandAFragment">
+
+    <android.support.design.widget.AppBarLayout
+        android:id = "@+id/appBar"
+        android:layout_height="250dp"
+        android:layout_width="match_parent">
+
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:theme="@style/AppTheme"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id = "@+id/title"
+                app:layout_collapseMode="parallax"
+                android:scaleType = "centerCrop"
+                android:src="@drawable/head5"
+
+                />
+
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                app:layout_collapseMode = "pin"
+                />
+
+
+
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+
+    </android.support.design.widget.AppBarLayout>
+
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="10dp"
+        android:id="@+id/lvTrace"
+        android:layout_width="match_parent"
+        android:divider="@null"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:listSelector="@android:color/transparent"
+        android:dividerHeight="0dp"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        app:layout_anchor ="@id/appBar"
+        app:layout_anchorGravity = "bottom|end"
+        android:layout_height="wrap_content">
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/question"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:scaleType="center"
+            app:borderWidth="0dp"
+            android:backgroundTint="#3F51B5"
+            android:src="@drawable/add_q_white" />
+
+        <!--<TextView-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:textColor="#000000"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text = "发起提问"-->
+            <!--android:textSize="18dp"/>-->
+
+    </LinearLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

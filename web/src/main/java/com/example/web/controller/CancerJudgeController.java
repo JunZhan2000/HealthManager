@@ -51,10 +51,8 @@ public class CancerJudgeController {
 
         String url = HttpUtil.generateGetUrl("http://localhost:8000/AI_API/cancer_judge",
                 parameterName, parameterValue);
-        System.out.println(url);
-//        Integer answer = Integer.parseInt(HttpUtil.get(url));
-        System.out.println(HttpUtil.get(url));
-        Integer answer = 1;
+        Integer answer = Integer.parseInt(HttpUtil.get(url));
+//        Integer answer = 1;
 
 
         //构造CTRecord类
